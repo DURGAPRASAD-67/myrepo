@@ -1,14 +1,4 @@
-# Use official Nginx image
-FROM nginx:latest
-
-# Copy custom Nginx configuration
-COPY nginx.conf /etc/nginx/nginx.conf
-
-# Copy application files
-COPY build /usr/share/nginx/html
-
-# Expose port
-EXPOSE 80
-
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+FROM tomcat:8.0.20-jre8
+MAINTAINER Durga 
+EXPOSE 8080
+COPY target/maven-web-app /usr/local/tomcat/webapps/maven-web-app
