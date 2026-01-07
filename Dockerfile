@@ -1,4 +1,12 @@
-FROM tomcat:8.0.20-jre8
-MAINTAINER Durga<durgaprasadsetti67@gmail.com>
+FROM tomcat:9.0.113
+
+# Remove default apps
+RUN rm -rf /usr/local/tomcat/webapps/*
+
+# Copy WAR to Tomcat
+COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
+
 EXPOSE 8080
-COPY target/maven-web-app.war /usr/local/tomcat/webapps/maven-web-app.war
+
+CMD ["catalina.sh", "run"]
+
